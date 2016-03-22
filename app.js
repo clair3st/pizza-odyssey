@@ -45,22 +45,7 @@ var oneAM = new timeDeliveryPizza ('1:00pm', 6, 11, 5, 20);
 //Variables for each time of day is stored in an array.
 var hoursOfTheDayArray = [eightAM, nineAM, tenAM, elevenAM, twelvePM, onePM, twoPM, threePM, fourPM, fivePM, sixPM, sevenPM, eightPM, ninePM, tenPM, elevenPM, twelveAM, oneAM];
 
-//Object constructor for a store.
-var storeLocation = function(storeName, hourOfDay) {
-  this.storeName = storeName;
-  this.timeDeliveryPizza = hoursOfTheDayArray[hourOfDay];
-};
-
-//test
-var Ballard = new storeLocation('Ballard', 0);
-console.log(Ballard);
-var ballard1 = hoursOfTheDayArray[9].timeOfDay + ' ' + hoursOfTheDayArray[9].pizzaSold + ' pizzas, ' + hoursOfTheDayArray[9].pizzaDelivered + hoursOfTheDayArray[9].deliveryDriversString;
-console.log(ballard1);
-
-//text to print
-//function textDisplay
-
-//try to display on DOM
+//function to display each hour on DOM as a bullet point
 function DOMdisplay(htmlID) {
   for (var i = 0; i < hoursOfTheDayArray.length; i++) {
     var bodyHeader = document.getElementById(htmlID);
@@ -70,4 +55,9 @@ function DOMdisplay(htmlID) {
   }
 }
 
-DOMdisplay('Ballardlist');
+DOMdisplay('ballardList');
+DOMdisplay('firstHillList');
+DOMdisplay('intDistrictList');
+DOMdisplay('sthLakeUnion');
+DOMdisplay('georgetownList');
+DOMdisplay('ravennaList');
