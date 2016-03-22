@@ -4,6 +4,7 @@ function randomNo (min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+//function for string to output depending on the amount of delivery drivers
 function deliveryString (drivers) {
   if (drivers === 0) {
     return ' -- [driver not recommended ]';
@@ -60,7 +61,13 @@ console.log(ballard1);
 //function textDisplay
 
 //try to display on DOM
-var bodyHeader = document.getElementById('Ballardlist');
-var pageHeading = document.createElement('li');
-pageHeading.textContent = ballard1;
-bodyHeader.appendChild(pageHeading);
+function DOMdisplay(htmlID) {
+  for (var i = 0; i < hoursOfTheDayArray.length; i++) {
+    var bodyHeader = document.getElementById(htmlID);
+    var pageHeading = document.createElement('li');
+    pageHeading.textContent = hoursOfTheDayArray[i].timeOfDay + ' ' + hoursOfTheDayArray[i].pizzaSold + ' pizzas, ' + hoursOfTheDayArray[i].pizzaDelivered + hoursOfTheDayArray[i].deliveryDriversString;
+    bodyHeader.appendChild(pageHeading);
+  }
+}
+
+DOMdisplay('Ballardlist');
