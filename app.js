@@ -27,6 +27,7 @@ for (var i = 0; i < openHoursArray.length; i++) {
 console.log(pizzaSold);
 
 //add data to pizzaDelivered Array
+
 var pizzaDelivered = [];
 for (var i = 0; i < openHoursArray.length; i++) {
   if (i < 6) {
@@ -77,14 +78,46 @@ var ballard = {
   storeData: salesDataArray,
 };
 console.log(ballard.name);
+console.log(ballard.storeData[0].time);
+
+var firstHill = {
+  name: 'First Hill',
+  storeData: salesDataArray,
+};
+
+var intDistrict = {
+  name: 'International District',
+  storeData: salesDataArray,
+};
+
+var sthLakeUnion = {
+  name: 'South Lake Union',
+  storeData: salesDataArray,
+};
+
+var georgetown = {
+  name: 'Georgetown',
+  storeData: salesDataArray,
+};
+
+var ravenna = {
+  name: 'Ravenna',
+  storeData: salesDataArray,
+};
 
 //Try to print to DOM.
-var ballardUL = document.getElementById('ballardList');
-var ballardULlist = document.createElement('li');
-ballardULlist.textContent = 'ballard.name';
-ballardULlist.appendChild = ballardULlist;
-/*
-var eightOclockLi;
-for (var i = 0; i < ballard.hourlyData.length; i++) {
-  eigthOclockLi = document.createElement('li');
-  eightOclockLi.textContent =*/
+function salesDataDisplay(restaurantObject) {
+  for (var i = 0; i < openHoursArray.length; i++) {
+    htmlListUL = document.getElementById(restaurantObject.name);
+    restaurantList = document.createElement('li');
+    restaurantList.textContent = restaurantObject.storeData[i].time + ' ' + restaurantObject.storeData[i].pizzas + ' pizzas, ' + restaurantObject.storeData[i].delivery + ' deliveries ' + restaurantObject.storeData[i].deliveryString;
+    htmlListUL.appendChild(restaurantList);
+  }
+}
+
+salesDataDisplay(ballard);
+salesDataDisplay(firstHill);
+salesDataDisplay(intDistrict);
+salesDataDisplay(sthLakeUnion);
+salesDataDisplay(georgetown);
+salesDataDisplay(ravenna);
