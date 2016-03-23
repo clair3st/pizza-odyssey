@@ -7,7 +7,7 @@ function randomNo (min, max) {
 //arrays of opening hours
 var openHoursArray = ['8:00am','9:00am','10:00am','11:00am', '12:00pm', '1:00pm', '2:00pm', '3:00pm', '4:00pm', '5:00pm', '6:00pm,', '7:00pm', '8:00pm', '9:00pm', '10:00pm', '11:00pm', '12:00am', '1:00am'];
 
-//add data to pizzaSold array
+//function to create random number of pizza sold based on provided information
 function getPizzasSold(i){
   var pizzaSold = 0;
   if (i < 3) {
@@ -25,10 +25,8 @@ function getPizzasSold(i){
   }
   return pizzaSold;
 }
-// console.log(pizzaSold);
 
-//add data to pizzaDelivered Array
-
+//function to create a random number of deliveries based on info
 function getDeliveriesMade(i) {
   var pizzaDelivered = 0;
   if (i < 6) {
@@ -42,21 +40,10 @@ function getDeliveriesMade(i) {
   } else {
     pizzaDelivered = randomNo(6,11);
   }
-
   return pizzaDelivered;
 }
 
-// console.log(pizzaDelivered);
-
-//Array of delivery drivers
-// var deliveryDriversRequired = [];
-// for (var i = 0; i < openHoursArray.length; i++) {
-//   deliveryDriversRequired.push(Math.ceil(pizzaDelivered[i] / 3));
-// }
-
-
-
-//add data to salesDataArray which is objects of sales data for each time.
+//function to create an array containing objects of sales data(time, pizzas sold and delivered)
 function salesData() {
   salesDataArray = [];
   for (var i = 0; i < openHoursArray.length; i++) {
@@ -68,9 +55,8 @@ function salesData() {
   }
   return salesDataArray;
 }
-//console.log(salesDataArray);
 
-//Create Ballard Object
+//Create Objects for each location
 var ballard = {
   name: 'Ballard',
   storeData: salesData(),
@@ -105,7 +91,7 @@ var ravenna = {
 function drivers(x) {
   return Math.ceil(x / 3);
 }
-//Add string depending on drivers
+//function to generate a string depending on drivers required
 function deliveryString (drivers) {
   if (drivers === 0) {
     return ' -- [driver not recommended ]';
@@ -114,7 +100,7 @@ function deliveryString (drivers) {
   }
 }
 
-//Try to print to DOM.
+//function to print to DOM.
 function salesDataDisplay(restaurantObject) {
   for (var i = 0; i < openHoursArray.length; i++) {
     htmlListUL = document.getElementById(restaurantObject.name);
@@ -124,6 +110,7 @@ function salesDataDisplay(restaurantObject) {
   }
 }
 
+//function calls for each location
 salesDataDisplay(ballard);
 salesDataDisplay(firstHill);
 salesDataDisplay(intDistrict);
