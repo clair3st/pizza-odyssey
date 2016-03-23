@@ -1,9 +1,11 @@
+var totalPizzaSales;
 
 //function for random number
 function randomNo (min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+// Object constructor for Store location and empty array for hourly data
 function StoreLocation(name){
   this.name = name;
   this.hourlyData = [];
@@ -12,9 +14,9 @@ function StoreLocation(name){
 //function for string to output depending on the amount of delivery drivers
 function deliveryString (drivers) {
   if (drivers === 0) {
-    return ' -- [driver not recommended ]';
+    return 'driver not recommended';
   } else {
-    return ' -- [drivers recommended: ' + drivers + ' ]';
+    return 'drivers recommended: ' + drivers;
   }
 }
 
@@ -164,38 +166,38 @@ var tableHeadings = ['Time', 'Pizzas Sold', 'Deliveries', 'Delivery Drivers Requ
 var tableArrayballard = [];
 for (var i = 0; i < openHoursArray.length; i++) {
   tableArrayballard.push([ballard.hourlyData[i].time, ballard.hourlyData[i].pizzaSold, ballard.hourlyData[i].pizzaDelivered,
-  ballard.hourlyData[i].deliveryDrivers]);
+  ballard.hourlyData[i].deliveryDriversString]);
 }
 
 var tableArrayFirstHill = [];
 for (var i = 0; i < openHoursArray.length; i++) {
   tableArrayFirstHill.push([firstHill.hourlyData[i].time, firstHill.hourlyData[i].pizzaSold, firstHill.hourlyData[i].pizzaDelivered,
-  firstHill.hourlyData[i].deliveryDrivers]);
+  firstHill.hourlyData[i].deliveryDriversString]);
 }
 console.log(tableArrayFirstHill);
 
 var tableArrayIntDistrict = [];
 for (var i = 0; i < openHoursArray.length; i++) {
   tableArrayIntDistrict.push([intDistrict.hourlyData[i].time, intDistrict.hourlyData[i].pizzaSold, intDistrict.hourlyData[i].pizzaDelivered,
-  intDistrict.hourlyData[i].deliveryDrivers]);
+  intDistrict.hourlyData[i].deliveryDriversString]);
 }
 
 var tableArraySthLakeUnion = [];
 for (var i = 0; i < openHoursArray.length; i++) {
   tableArraySthLakeUnion.push([sthLakeUnion.hourlyData[i].time, sthLakeUnion.hourlyData[i].pizzaSold, sthLakeUnion.hourlyData[i].pizzaDelivered,
-  sthLakeUnion.hourlyData[i].deliveryDrivers]);
+  sthLakeUnion.hourlyData[i].deliveryDriversString]);
 }
 
 var tableArrayGeorgetown = [];
 for (var i = 0; i < openHoursArray.length; i++) {
   tableArrayGeorgetown.push([georgetown.hourlyData[i].time, georgetown.hourlyData[i].pizzaSold, georgetown.hourlyData[i].pizzaDelivered,
-  georgetown.hourlyData[i].deliveryDrivers]);
+  georgetown.hourlyData[i].deliveryDriversString]);
 }
 
 var tableArrayRavenna = [];
 for (var i = 0; i < openHoursArray.length; i++) {
   tableArrayRavenna.push([ravenna.hourlyData[i].time, ravenna.hourlyData[i].pizzaSold, ravenna.hourlyData[i].pizzaDelivered,
-  ravenna.hourlyData[i].deliveryDrivers]);
+  ravenna.hourlyData[i].deliveryDriversString]);
 }
 
 //function for datarow
@@ -226,7 +228,6 @@ function createTable(store, arrayContent) {
   var peopleTable = document.createElement('table');
   var firstRow = generateHeadingRow(tableHeadings);
   peopleTable.appendChild(firstRow);
-
   function getAllRows(arrayContent) {
     for (var i = 0; i < arrayContent.length; i++) {
       row = generateDataRow(arrayContent[i]);
@@ -234,14 +235,27 @@ function createTable(store, arrayContent) {
       document.getElementById(store).appendChild(peopleTable);
     }
   }
-
   getAllRows(arrayContent);
   document.getElementById(store).appendChild(peopleTable);
 }
 
+//call the createTable functions to generate tables for each restaurant
 createTable('ballard', tableArrayballard);
 createTable('First Hill', tableArrayFirstHill);
 createTable('International District', tableArrayIntDistrict);
 createTable('South Lake Union', tableArraySthLakeUnion);
 createTable('Georgetown', tableArrayGeorgetown);
 createTable('Ravenna', tableArrayRavenna);
+
+//calculate the total amount of pizza sales and store in global variable totalPizzaSales.
+totalPizzaSales = 0;
+for (var i = 0; i < openHoursArray.length; i++) {
+  totalPizzaSales += ballard.hourlyData[i].pizzaSold + firstHill.hourlyData[i].pizzaSold, intDistrict.hourlyData[i].pizzaSold + sthLakeUnion.hourlyData[i].pizzaSold + georgetown.hourlyData[i].pizzaSold + ravenna.hourlyData[i].pizzaSold;
+};
+console.log('total Pizza Sales: ' + totalPizzaSales);
+
+//try print to index.html
+var bodyHeader = document.getElementById('feature');
+var pageHeading = document.createElement('p');
+pageHeading.textContent = totalPizzaSales + ' happy pizza odysseys this week!';
+bodyHeader.appendChild(pageHeading);
