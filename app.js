@@ -56,21 +56,18 @@ ballard.pushHourlyData(new HourlyData ('11:00pm', 8, 15, 6, 16));
 console.log(ballard);
 
 //Variables for each time of day is stored in an array.
-var hoursOfTheDayArray = ['8:00am',eightAM, nineAM, tenAM, elevenAM, twelvePM, onePM, twoPM, threePM, fourPM, fivePM, sixPM, sevenPM, eightPM, ninePM, tenPM, elevenPM, twelveAM, oneAM];
+var openHoursArray = ['8:00am','9:00am','10:00am','11:00am', '12:00pm', '1:00pm', '2:00pm', '3:00pm', '4:00pm', '5:00pm', '6:00pm,', '7:00pm', '8:00pm', '9:00pm', '10:00pm', '11:00pm', '12:00am', '1:00am'];
 
 //function to display each hour on DOM as a bullet point
-function DOMdisplay(htmlID) {
-  for (var i = 0; i < hoursOfTheDayArray.length; i++) {
-    var bodyHeader = document.getElementById(htmlID);
-    var pageHeading = document.createElement('li');
-    pageHeading.textContent = htmlID.hourlyData[i].time + ' ' + htmlID.hourlyData[i].pizzaSold + ' pizzas, ' + htmlID.hourlyData[i].pizzaDelivered + htmlID.hourlyData[i].deliveryDriversString;
-    bodyHeader.appendChild(pageHeading);
-  }
+for (var i = 0; i < openHoursArray.length; i++) {
+  bodyHeader = document.getElementById('ballard');
+  pageHeading = document.createElement('li');
+  pageHeading.textContent = ballard.hourlyData[i].time + ' ' + ballard.hourlyData[i].pizzaSold + ' pizzas, ' + ballard.hourlyData[i].pizzaDelivered + ballard.hourlyData[i].deliveryDriversString;
+  bodyHeader.appendChild(pageHeading);
 }
 
-DOMdisplay('ballard');
-DOMdisplay('firstHillList');
-DOMdisplay('intDistrictList');
-DOMdisplay('sthLakeUnion');
-DOMdisplay('georgetownList');
-DOMdisplay('ravennaList');
+// DOMdisplay('firstHillList');
+// DOMdisplay('intDistrictList');
+// DOMdisplay('sthLakeUnion');
+// DOMdisplay('georgetownList');
+// DOMdisplay('ravennaList');
