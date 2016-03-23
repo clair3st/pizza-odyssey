@@ -33,7 +33,7 @@ StoreLocation.prototype.pushHourlyData = function(data){
 };
 
 //Store data for each time in a variable using the HourlyData object constructor
-var ballard = new StoreLocation('Ballard');
+var ballard = new StoreLocation('ballard');
 ballard.pushHourlyData(new HourlyData('8:00am', 0, 3, 1, 7));
 ballard.pushHourlyData(new HourlyData('9:00am', 0, 3, 1, 7));
 ballard.pushHourlyData(new HourlyData ('10:00am', 0, 3, 1, 7));
@@ -157,22 +157,48 @@ ravenna.pushHourlyData(new HourlyData ('1:00am', 2, 4, 3, 11));
 //Variables for each time of day is stored in an array.
 var openHoursArray = ['8:00am','9:00am','10:00am','11:00am', '12:00pm', '1:00pm', '2:00pm', '3:00pm', '4:00pm', '5:00pm', '6:00pm,', '7:00pm', '8:00pm', '9:00pm', '10:00pm', '11:00pm', '12:00am', '1:00am'];
 
-//function to display each hour on DOM as a bullet point
-// for (var i = 0; i < openHoursArray.length; i++) {
-//   bodyHeader = document.getElementById('ballard');
-//   pageHeading = document.createElement('li');
-//   pageHeading.textContent = ballard.hourlyData[i].time + ' ' + ballard.hourlyData[i].pizzaSold + ' pizzas, ' + ballard.hourlyData[i].pizzaDelivered + ballard.hourlyData[i].deliveryDriversString;
-//   bodyHeader.appendChild(pageHeading);
-// }
+//Table headings
 var tableHeadings = ['Time', 'Pizzas Sold', 'Deliveries', 'Delivery Drivers Required'];
 
-var tableArray = [];
+//Array of table data for each restaurant
+var tableArrayballard = [];
 for (var i = 0; i < openHoursArray.length; i++) {
-  tableArray.push([ballard.hourlyData[i].time, ballard.hourlyData[i].pizzaSold, ballard.hourlyData[i].pizzaDelivered,
+  tableArrayballard.push([ballard.hourlyData[i].time, ballard.hourlyData[i].pizzaSold, ballard.hourlyData[i].pizzaDelivered,
   ballard.hourlyData[i].deliveryDrivers]);
 }
-console.log(tableArray);
 
+var tableArrayFirstHill = [];
+for (var i = 0; i < openHoursArray.length; i++) {
+  tableArrayFirstHill.push([firstHill.hourlyData[i].time, firstHill.hourlyData[i].pizzaSold, firstHill.hourlyData[i].pizzaDelivered,
+  firstHill.hourlyData[i].deliveryDrivers]);
+}
+console.log(tableArrayFirstHill);
+
+var tableArrayIntDistrict = [];
+for (var i = 0; i < openHoursArray.length; i++) {
+  tableArrayIntDistrict.push([intDistrict.hourlyData[i].time, intDistrict.hourlyData[i].pizzaSold, intDistrict.hourlyData[i].pizzaDelivered,
+  intDistrict.hourlyData[i].deliveryDrivers]);
+}
+
+var tableArraySthLakeUnion = [];
+for (var i = 0; i < openHoursArray.length; i++) {
+  tableArraySthLakeUnion.push([sthLakeUnion.hourlyData[i].time, sthLakeUnion.hourlyData[i].pizzaSold, sthLakeUnion.hourlyData[i].pizzaDelivered,
+  sthLakeUnion.hourlyData[i].deliveryDrivers]);
+}
+
+var tableArrayGeorgetown = [];
+for (var i = 0; i < openHoursArray.length; i++) {
+  tableArrayGeorgetown.push([georgetown.hourlyData[i].time, georgetown.hourlyData[i].pizzaSold, georgetown.hourlyData[i].pizzaDelivered,
+  georgetown.hourlyData[i].deliveryDrivers]);
+}
+
+var tableArrayRavenna = [];
+for (var i = 0; i < openHoursArray.length; i++) {
+  tableArrayRavenna.push([ravenna.hourlyData[i].time, ravenna.hourlyData[i].pizzaSold, ravenna.hourlyData[i].pizzaDelivered,
+  ravenna.hourlyData[i].deliveryDrivers]);
+}
+
+//function for datarow
 function generateDataRow(inputArray) {
   var row = document.createElement('tr');
   var col;
@@ -196,17 +222,26 @@ function generateHeadingRow(inputArray) {
   return row;
 }
 
-var peopleTable = document.createElement('table');
-var firstRow = generateHeadingRow(tableHeadings);
-peopleTable.appendChild(firstRow);
+function createTable(store, arrayContent) {
+  var peopleTable = document.createElement('table');
+  var firstRow = generateHeadingRow(tableHeadings);
+  peopleTable.appendChild(firstRow);
 
-function getAllRows(arrayContent) {
-  for (var i = 0; i < arrayContent.length; i++) {
-    row = generateDataRow(arrayContent[i]);
-    peopleTable.appendChild(row);
-    document.getElementById('ballard').appendChild(peopleTable);
+  function getAllRows(arrayContent) {
+    for (var i = 0; i < arrayContent.length; i++) {
+      row = generateDataRow(arrayContent[i]);
+      peopleTable.appendChild(row);
+      document.getElementById(store).appendChild(peopleTable);
+    }
   }
+
+  getAllRows(arrayContent);
+  document.getElementById(store).appendChild(peopleTable);
 }
 
-getAllRows(tableArray);
-document.getElementById('ballard').appendChild(peopleTable);
+createTable('ballard', tableArrayballard);
+createTable('First Hill', tableArrayFirstHill);
+createTable('International District', tableArrayIntDistrict);
+createTable('South Lake Union', tableArraySthLakeUnion);
+createTable('Georgetown', tableArrayGeorgetown);
+createTable('Ravenna', tableArrayRavenna);
