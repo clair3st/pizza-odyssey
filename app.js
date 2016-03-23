@@ -4,94 +4,7 @@ function randomNo (min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-//arrays of opening hours
-var openHoursArray = ['8:00am','9:00am','10:00am','11:00am', '12:00pm', '1:00pm', '2:00pm', '3:00pm', '4:00pm', '5:00pm', '6:00pm,', '7:00pm', '8:00pm', '9:00pm', '10:00pm', '11:00pm', '12:00am', '1:00am'];
-
-//function to create random number of pizza sold based on provided information
-function getPizzasSold(i){
-  var pizzaSold = 0;
-  if (i < 3) {
-    pizzaSold = randomNo(0,4);
-  } else if (i > 2 && i < 6) {
-    pizzaSold = randomNo(0,7);
-  } else if (i > 5 && i < 9) {
-    pizzaSold = randomNo(2,15);
-  } else if (i > 8 && i < 12) {
-    pizzaSold = randomNo(15,35);
-  } else if (i > 11 && i < 15) {
-    pizzaSold = randomNo(12,31);
-  } else {
-    pizzaSold = randomNo(5,20);
-  }
-  return pizzaSold;
-}
-
-//function to create a random number of deliveries based on info
-function getDeliveriesMade(i) {
-  var pizzaDelivered = 0;
-  if (i < 6) {
-    pizzaDelivered = randomNo(0,4);
-  } else if (i > 5 && i < 9) {
-    pizzaDelivered = randomNo(1,4);
-  } else if (i > 8 && i < 12) {
-    pizzaDelivered = randomNo(5,20);
-  } else if (i > 11 && i < 15) {
-    pizzaDelivered = randomNo(5,12);
-  } else {
-    pizzaDelivered = randomNo(6,11);
-  }
-  return pizzaDelivered;
-}
-
-//function to create an array containing objects of sales data(time, pizzas sold and delivered)
-function salesData() {
-  salesDataArray = [];
-  for (var i = 0; i < openHoursArray.length; i++) {
-    salesDataArray.push({
-      time: openHoursArray[i],
-      pizzas: getPizzasSold(i),
-      delivery: getDeliveriesMade(i),
-    });
-  }
-  return salesDataArray;
-}
-
-//Create Objects for each location
-var ballard = {
-  name: 'Ballard',
-  storeData: salesData(),
-};
-
-var firstHill = {
-  name: 'First Hill',
-  storeData: salesData(),
-};
-
-var intDistrict = {
-  name: 'International District',
-  storeData: salesData(),
-};
-
-var sthLakeUnion = {
-  name: 'South Lake Union',
-  storeData: salesData(),
-};
-
-var georgetown = {
-  name: 'Georgetown',
-  storeData: salesData(),
-};
-
-var ravenna = {
-  name: 'Ravenna',
-  storeData: salesData(),
-};
-
-//Add a function to work out how many drivers we need
-function drivers(x) {
-  return Math.ceil(x / 3);
-}
-//function to generate a string depending on drivers required
+//function for string to output depending on the amount of delivery drivers
 function deliveryString (drivers) {
   if (drivers === 0) {
     return ' -- [driver not recommended ]';
@@ -100,20 +13,51 @@ function deliveryString (drivers) {
   }
 }
 
-//function to print to DOM.
-function salesDataDisplay(restaurantObject) {
-  for (var i = 0; i < openHoursArray.length; i++) {
-    htmlListUL = document.getElementById(restaurantObject.name);
-    restaurantList = document.createElement('li');
-    restaurantList.textContent = restaurantObject.storeData[i].time + ' ' + restaurantObject.storeData[i].pizzas + ' pizzas, ' + restaurantObject.storeData[i].delivery + ' deliveries ' + deliveryString(drivers(restaurantObject.storeData[i].delivery));
-    htmlListUL.appendChild(restaurantList);
+//Object containing time of day, pizza's sold, pizza's deliveried and drivers needed.
+var HourlyData = function(time, minDelivery, maxDelivery, minPizza, maxPizza) {
+  this.timeOfDay = time;
+  this.pizzaSold = randomNo(minPizza, maxPizza);
+  this.pizzaDelivered = randomNo(minDelivery, maxDelivery);
+  this.deliveryDrivers = Math.ceil(this.pizzaDelivered / 3);
+  this.deliveryDriversString = deliveryString(this.deliveryDrivers);
+};
+
+//Store data for each time in a variable using the HourlyData object constructor
+var eightAM = new HourlyData ('8:00am', 0, 4, 0, 4);
+var nineAM = new HourlyData ('9:00am', 0, 4, 0, 4);
+var tenAM = new HourlyData ('10:00am', 0, 4, 0, 4);
+var elevenAM = new HourlyData ('11:00am', 0, 4, 0, 7);
+var twelvePM = new HourlyData ('12:00pm', 0, 4, 0, 7);
+var onePM = new HourlyData ('1:00pm', 0, 4, 0, 7);
+var twoPM = new HourlyData ('2:00pm', 1, 4, 2, 15);
+var threePM = new HourlyData ('3:00pm', 1, 4, 2, 15);
+var fourPM = new HourlyData ('4:00pm', 1, 4, 2, 15);
+var fivePM = new HourlyData ('5:00pm', 3, 8, 15, 35);
+var sixPM = new HourlyData ('6:00pm', 3, 8, 15, 35);
+var sevenPM = new HourlyData ('7:00pm', 3, 8, 15, 35);
+var eightPM = new HourlyData ('8:00pm', 5, 12, 12, 31);
+var ninePM = new HourlyData ('9:00pm', 5, 12, 12, 31);
+var tenPM = new HourlyData ('10:00pm', 5, 12, 12, 31);
+var elevenPM = new HourlyData ('11:00pm', 6, 11, 5, 20);
+var twelveAM = new HourlyData ('12:00pm', 6, 11, 5, 20);
+var oneAM = new HourlyData ('1:00pm', 6, 11, 5, 20);
+
+//Variables for each time of day is stored in an array.
+var hoursOfTheDayArray = [eightAM, nineAM, tenAM, elevenAM, twelvePM, onePM, twoPM, threePM, fourPM, fivePM, sixPM, sevenPM, eightPM, ninePM, tenPM, elevenPM, twelveAM, oneAM];
+
+//function to display each hour on DOM as a bullet point
+function DOMdisplay(htmlID) {
+  for (var i = 0; i < hoursOfTheDayArray.length; i++) {
+    var bodyHeader = document.getElementById(htmlID);
+    var pageHeading = document.createElement('li');
+    pageHeading.textContent = hoursOfTheDayArray[i].timeOfDay + ' ' + hoursOfTheDayArray[i].pizzaSold + ' pizzas, ' + hoursOfTheDayArray[i].pizzaDelivered + hoursOfTheDayArray[i].deliveryDriversString;
+    bodyHeader.appendChild(pageHeading);
   }
 }
 
-//function calls for each location
-salesDataDisplay(ballard);
-salesDataDisplay(firstHill);
-salesDataDisplay(intDistrict);
-salesDataDisplay(sthLakeUnion);
-salesDataDisplay(georgetown);
-salesDataDisplay(ravenna);
+DOMdisplay('ballardList');
+DOMdisplay('firstHillList');
+DOMdisplay('intDistrictList');
+DOMdisplay('sthLakeUnion');
+DOMdisplay('georgetownList');
+DOMdisplay('ravennaList');
