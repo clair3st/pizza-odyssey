@@ -240,7 +240,7 @@ function createTable(store, arrayContent) {
 }
 
 //call the createTable functions to generate tables for each restaurant
-if (document.getElementById('sales-data') !== null) {
+if (document.getElementsByClassName('sales-data') !== null) {
   createTable('ballard', tableArrayballard);
   createTable('First Hill', tableArrayFirstHill);
   createTable('International District', tableArrayIntDistrict);
