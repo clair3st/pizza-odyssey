@@ -87,7 +87,7 @@ figcaption {
 }
 
 
-#feature {
+#feature>p {
   background-color: #D2BC9E;
   text-align: center;
   padding: 5px;
