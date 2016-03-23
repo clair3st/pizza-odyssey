@@ -1,12 +1,13 @@
 @import url(https://fonts.googleapis.com/css?family=Orbitron|Comfortaa|Inconsolata|Exo+2|Rubik+Mono+One|Trade+Winds|Montez);
-/* google fonts
-font-family: 'Trade Winds', cursive;
-font-family: 'Rubik Mono One', sans-serif;
-font-family: 'Inconsolata', ;
-*/
+
+
 
 body {
   background-color: #00033E;
+}
+
+.sales-data {
+  background-color: white;
 }
 
 header {
@@ -96,4 +97,21 @@ figcaption {
   margin-right: auto;
   font-weight: bold;
   border-radius: 5px;
+}
+
+table {
+  border-collapse: collapse;
+  border: solid;
+}
+
+th {
+  border: solid;
+  text-align: center;
+  padding: 5px;
+}
+
+td {
+  border: solid;
+  text-align: center;
+  padding: 5px;
 }
