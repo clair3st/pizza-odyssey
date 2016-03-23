@@ -240,12 +240,14 @@ function createTable(store, arrayContent) {
 }
 
 //call the createTable functions to generate tables for each restaurant
-createTable('ballard', tableArrayballard);
-createTable('First Hill', tableArrayFirstHill);
-createTable('International District', tableArrayIntDistrict);
-createTable('South Lake Union', tableArraySthLakeUnion);
-createTable('Georgetown', tableArrayGeorgetown);
-createTable('Ravenna', tableArrayRavenna);
+if (document.getElementById('sales-data') !== null) {
+  createTable('ballard', tableArrayballard);
+  createTable('First Hill', tableArrayFirstHill);
+  createTable('International District', tableArrayIntDistrict);
+  createTable('South Lake Union', tableArraySthLakeUnion);
+  createTable('Georgetown', tableArrayGeorgetown);
+  createTable('Ravenna', tableArrayRavenna);
+}
 
 //calculate the total amount of pizza sales and store in global variable totalPizzaSales.
 totalPizzaSales = 0;
@@ -255,7 +257,9 @@ for (var i = 0; i < openHoursArray.length; i++) {
 console.log('total Pizza Sales: ' + totalPizzaSales);
 
 //try print to index.html
-var bodyHeader = document.getElementById('feature');
-var pageHeading = document.createElement('p');
-pageHeading.textContent = totalPizzaSales + ' happy pizza odysseys this week!';
-bodyHeader.appendChild(pageHeading);
+if (document.getElementById('feature') !== null) {
+  var bodyHeader = document.getElementById('feature');
+  var pageHeading = document.createElement('p');
+  pageHeading.textContent = totalPizzaSales + ' happy pizza odysseys this week!';
+  bodyHeader.appendChild(pageHeading);
+}
