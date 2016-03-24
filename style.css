@@ -1,12 +1,9 @@
-@import url(https://fonts.googleapis.com/css?family=Orbitron|Comfortaa|Inconsolata|Exo+2|Rubik+Mono+One|Trade+Winds|Montez);
-
-
 
 body {
   background-color: #00033E;
 }
 
-.sales-data {
+#sales-data {
   background-color: white;
 }
 
@@ -26,15 +23,12 @@ header {
 }
 
 section {
-  margin-left: auto;
-  margin-right: auto;
+  margin: 30px auto 10px auto;
   padding: 5px;
-  margin-bottom: 30px;
-  margin-top: 30px;
   border-radius: 10px;
 }
 
-section>h3 {
+h3 {
   font-family: 'Rubik Mono One', sans-serif;
 }
 
