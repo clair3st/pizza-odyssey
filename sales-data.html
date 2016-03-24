@@ -5,36 +5,74 @@
     <link rel="stylesheet" type="text/CSS" href="style.css"></link>
   </head>
   <body id='sales-data'>
-    <article>
-      <p>Ballard</p>
+    <section>
+      <h4>Ballard</h4>
       <ul id ='ballard'>
       </ul>
-    </article>
-    <article>
-      <p>First Hill</p>
+    </section>
+    <section>
+      <h4>First Hill</h4>
       <ul id ='First Hill'>
       </ul>
-    </article>
-    <article>
-      <p>International District</p>
+    </section>
+    <section>
+      <h4>International District</h4>
       <ul id='International District'>
       </ul>
-    </article>
-    <article>
-      <p>South Lake Union</p>
+    </section>
+    <section>
+      <h4>South Lake Union</h4>
       <ul id='South Lake Union'>
       </ul>
-    </article>
-    <article>
+    </section>
+    <section>
       <p>Georgetown</p>
       <ul id='Georgetown'>
       </ul>
-    </article>
-    <article >
-      <p>Ravenna</p>
+    </section>
+    <section>
+      <h4>Ravenna</h4>
       <ul id='Ravenna'>
       </ul>
-    </article>
+    </section>
+  <section>
+    <form id='pizza-sales-form'>
+      <fieldset>
+        <legend>New Sales Information</legend>
+        <label name='restaurant'>Restaurant Location:</label>
+        <input name='restaurant' type='text'>
+
+        <label name='time'>Time of day:</label>
+        <input name='time' type='text'>
+
+        <label name='minPizza'>Minimum Pizza Sales:</label>
+        <input name='minPizza' type='text'>
+
+        <label name='maxPizza'>Maximum Pizza Sales:</label>
+        <input name='maxPizza' type='text'>
+        <br/>
+        <label name='minDelivery'>Minimum Pizza Deliveries:</label>
+        <input name='minDelivery' type='text'>
+
+        <label name='maxDelivery'>Maximum Pizza Deliveries:</label>
+        <input name='maxDelivery' type='text'>
+
+        <button type='submit'>Submit a new restaurant</button>
+
+      </fieldset>
+    </form>
+    <table id='pizza-sales-table'>
+      <thead>
+        <th>Restaurant</th>
+      </thead>
+      <tr>
+        <th>Time</th>
+        <th>Pizza Sales</th>
+        <th>Pizza Delivery</th>
+        <th>Delivery Drivers</th>
+      </tr>
+    </table>
+  </section>
     <script src='app.js' type='text/javascript'></script>
   </body>
 </html>
