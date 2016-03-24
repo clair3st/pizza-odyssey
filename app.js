@@ -266,6 +266,6 @@ console.log('total Pizza Sales: ' + totalPizzaSales);
 if (document.getElementById('feature') !== null) {
   featureId = document.getElementById('feature');
   featureText = document.createElement('p');
-  featureText.textContent = totalPizzaSales + ' happy pizza odysseys this week!';
+  featureText.textContent = totalPizzaSales + ' happy pizza odysseys today!';
   featureId.appendChild(featureText);
 }
