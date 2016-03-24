@@ -269,3 +269,40 @@ if (document.getElementById('feature') !== null) {
   featureText.textContent = totalPizzaSales + ' happy pizza odysseys today!';
   featureId.appendChild(featureText);
 }
+
+function collectPizzaForm(event){
+  event.preventDefault();
+
+  var pizzaSaleTable = document.getElementById('pizza-sales-table');
+
+  var restaurant = event.target.restaurant.value;
+  console.log('restaurant: ' + restaurant);
+
+  var time = event.target.time.value;
+  var minPizza = parseInt(event.target.minPizza.value);
+  var maxPizza = parseInt(event.target.maxPizza.value);
+  var minDelivery = parseInt(event.target.minDelivery.value);
+  var maxDelivery = parseInt(event.target.maxDelivery.value);
+
+  console.log('time, ' + time + typeof(time));
+
+  var createRestaurant = new StoreLocation(restaurant);
+  createRestaurant.pushHourlyData(new HourlyData(time, minPizza, maxPizza, minDelivery, maxDelivery));
+  console.log('new object ', createRestaurant);
+
+  var restaurantRow = document.createElement('tr');
+  console.log('restaurantRow, ' + restaurantRow);
+
+  var timeCol = document.createElement('td');
+  timeCol.textContent = time;
+  restaurantRow.appendChild(timeCol);
+
+  var restaurantColumn = document.createElement('td');
+  restaurantColumn.textContent = restaurant;
+  restaurantRow.appendChild(restaurantColumn);
+
+  pizzaSaleTable.appendChild(restaurantRow);
+}
+
+var createPizzaForm = document.getElementById('pizza-sales-form');
+createPizzaForm.addEventListener('submit', collectPizzaForm);
