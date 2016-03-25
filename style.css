@@ -109,3 +109,12 @@ td {
   text-align: center;
   padding: 5px;
 }
+
+form {
+  padding: 5px;
+}
+
+label {
+  padding: 10px;
+  margin: 10px;
+}
