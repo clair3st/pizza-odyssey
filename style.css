@@ -3,7 +3,7 @@ body {
   background-color: #00033E;
 }
 
-.sales-data {
+.sales-data-body {
   background-color: white;
 }
 
@@ -19,7 +19,7 @@ header {
   font-family: 'Trade Winds', cursive;
   font-size: 50px;
   border-radius: 80px 50px;
-  padding: 2px;
+  padding: 5px;
 }
 
 section {
@@ -39,7 +39,7 @@ section p {
 .aboutUs {
   background-color: #44939E;
   text-align: center;
-  height: 120px;
+  height: 150px;
   width: 80%;
 }
 
@@ -64,8 +64,14 @@ figcaption {
   width: 80%;
 }
 
-.ourLocations>ul {
+ul {
  font-family: 'Exo 2', sans-serif;
+ columns: 2;
+ -webkit-columns: 2;
+ -moz-columns: 2;
+ list-style-type: none;
+ width: 65%;
+ margin:0px auto;
 }
 
 .ourLocations>h3 {
