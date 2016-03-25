@@ -6,7 +6,7 @@ var openHoursArray = ['8:00am','9:00am','10:00am','11:00am', '12:00pm', '1:00pm'
 var tableHeadings = ['Time', 'Pizzas Sold', 'Deliveries', 'Delivery Drivers Required'];
 
 //Variables to manipulate DOM
-var row, col, peopleTable, firstRow, featureId, featureText;
+var row, col, restaurantTable, firstRow, featureId, featureText;
 //Variable to calculate pizza sales to update index.html
 var totalPizzaSales = 0;
 var count = 0;
@@ -79,15 +79,19 @@ function generateHeadingRow(inputArray) {
 
 //function to generate entire table for each restaurant
 function createTable(store, arrayContent) {
-  peopleTable = document.createElement('table');
+  var pizzaSalesTable = document.getElementById('sales-data');
+  var restaurantTitle = document.createElement('h2');
+  restaurantTitle.textContent = store;
+  pizzaSalesTable.appendChild(restaurantTitle);
+
+  restaurantTable = document.createElement('table');
   firstRow = generateHeadingRow(tableHeadings);
-  peopleTable.appendChild(firstRow);
+  restaurantTable.appendChild(firstRow);
   for (var i = 0; i < arrayContent.length; i++) {
     row = generateDataRow(arrayContent[i]);
-    peopleTable.appendChild(row);
-    document.getElementById(store).appendChild(peopleTable);
+    restaurantTable.appendChild(row);
+    pizzaSalesTable.appendChild(restaurantTable);
   }
-  document.getElementById(store).appendChild(peopleTable);
 }
 
 //Event Listener for New Restaurant Form
@@ -96,12 +100,11 @@ function collectPizzaForm(event){
   event.preventDefault();
 
   var pizzaSaleTable = document.getElementById('pizza-sales-table');
-  var pizzaSaleTableHeading = document.getElementById('create-location');
   var parentDiv = pizzaSaleTable.parentNode;
 
   var restaurant = event.target.restaurant.value;
   console.log('restaurant: ' + restaurant);
-  var restaurantTitle = document.createElement('h4');
+  var restaurantTitle = document.createElement('h2');
   console.log('restaurant title: ' + restaurantTitle);
   restaurantTitle.textContent = restaurant;
 
@@ -123,6 +126,20 @@ function collectPizzaForm(event){
   pizzaSaleTable.appendChild(row);
   count += 1;
   console.log(count);
+}
+
+function collectHeadingForm(event) {
+  event.preventDefault();
+  var pizzaSalesTable = document.getElementById('sales-data');
+  var restaurantTitle = document.createElement('h2');
+  var restaurant = event.target.locationName.value;
+  restaurantTitle.textContent = restaurant;
+  pizzaSalesTable.appendChild(restaurantTitle);
+
+  restaurantTable = document.createElement('table');
+  firstRow = generateHeadingRow(tableHeadings);
+  restaurantTable.appendChild(firstRow);
+
 }
 
 //Store data for each time in a variable using the HourlyData object constructor
@@ -255,7 +272,7 @@ ravenna.arrayHourlyData();
 
 //call the createTable functions to generate tables for each restaurant
 if (document.getElementById('sales-data') !== null) {
-  createTable('ballard', ballard.arrayData);
+  createTable('Ballard', ballard.arrayData);
   createTable('First Hill', firstHill.arrayData);
   createTable('International District', intDistrict.arrayData);
   createTable('South Lake Union', sthLakeUnion.arrayData);
@@ -276,6 +293,7 @@ if (document.getElementById('feature') !== null) {
   featureText.textContent = totalPizzaSales + ' happy pizza odysseys today!';
   featureId.appendChild(featureText);
 }
-
+var createRestaurantForm = document.getElementById('new-restaurant-form');
+createRestaurantForm.addEventListener('submit', collectHeadingForm);
 var createPizzaForm = document.getElementById('pizza-sales-form');
 createPizzaForm.addEventListener('submit', collectPizzaForm);
