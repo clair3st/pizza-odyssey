@@ -1,16 +1,14 @@
 //Initialise Global variables
 //Variables for each time of day is stored in an array.
-openHoursArray = ['8:00am','9:00am','10:00am','11:00am', '12:00pm', '1:00pm', '2:00pm', '3:00pm', '4:00pm', '5:00pm', '6:00pm,', '7:00pm', '8:00pm', '9:00pm', '10:00pm', '11:00pm', '12:00am', '1:00am'];
+var openHoursArray = ['8:00am','9:00am','10:00am','11:00am', '12:00pm', '1:00pm', '2:00pm', '3:00pm', '4:00pm', '5:00pm', '6:00pm,', '7:00pm', '8:00pm', '9:00pm', '10:00pm', '11:00pm', '12:00am', '1:00am'];
 
 //Table headings
-tableHeadings = ['Time', 'Pizzas Sold', 'Deliveries', 'Delivery Drivers Required'];
+var tableHeadings = ['Time', 'Pizzas Sold', 'Deliveries', 'Delivery Drivers Required'];
 
-//Variables for Arrays to use to add to DOM
-var openHoursArray, tableHeadings, tableArrayballard, tableArrayFirstHill, tableArrayIntDistrict, tableArraySthLakeUnion, tableArrayGeorgetown, tableArrayRavenna;
 //Variables to manipulate DOM
 var row, col, peopleTable, firstRow, featureId, featureText;
 //Variable to calculate pizza sales to update index.html
-var totalPizzaSales;
+var totalPizzaSales = 0;
 var count = 0;
 
 // Object constructor for Store location and empty array for hourly data
@@ -255,56 +253,17 @@ ravenna.pushHourlyData(new HourlyData ('12:00am', 2, 4, 3, 11));
 ravenna.pushHourlyData(new HourlyData ('1:00am', 2, 4, 3, 11));
 ravenna.arrayHourlyData();
 
-//Array of table data for each restaurant
-tableArrayballard = [];
-for (var i = 0; i < openHoursArray.length; i++) {
-  tableArrayballard.push([ballard.hourlyData[i].time, ballard.hourlyData[i].pizzaSold, ballard.hourlyData[i].pizzaDelivered,
-  ballard.hourlyData[i].deliveryDriversString]);
-}
-
-tableArrayFirstHill = [];
-for (var i = 0; i < openHoursArray.length; i++) {
-  tableArrayFirstHill.push([firstHill.hourlyData[i].time, firstHill.hourlyData[i].pizzaSold, firstHill.hourlyData[i].pizzaDelivered,
-  firstHill.hourlyData[i].deliveryDriversString]);
-}
-console.log(tableArrayFirstHill);
-
-tableArrayIntDistrict = [];
-for (var i = 0; i < openHoursArray.length; i++) {
-  tableArrayIntDistrict.push([intDistrict.hourlyData[i].time, intDistrict.hourlyData[i].pizzaSold, intDistrict.hourlyData[i].pizzaDelivered,
-  intDistrict.hourlyData[i].deliveryDriversString]);
-}
-
-tableArraySthLakeUnion = [];
-for (var i = 0; i < openHoursArray.length; i++) {
-  tableArraySthLakeUnion.push([sthLakeUnion.hourlyData[i].time, sthLakeUnion.hourlyData[i].pizzaSold, sthLakeUnion.hourlyData[i].pizzaDelivered,
-  sthLakeUnion.hourlyData[i].deliveryDriversString]);
-}
-
-tableArrayGeorgetown = [];
-for (var i = 0; i < openHoursArray.length; i++) {
-  tableArrayGeorgetown.push([georgetown.hourlyData[i].time, georgetown.hourlyData[i].pizzaSold, georgetown.hourlyData[i].pizzaDelivered,
-  georgetown.hourlyData[i].deliveryDriversString]);
-}
-
-tableArrayRavenna = [];
-for (var i = 0; i < openHoursArray.length; i++) {
-  tableArrayRavenna.push([ravenna.hourlyData[i].time, ravenna.hourlyData[i].pizzaSold, ravenna.hourlyData[i].pizzaDelivered,
-  ravenna.hourlyData[i].deliveryDriversString]);
-}
-
-  //call the createTable functions to generate tables for each restaurant
+//call the createTable functions to generate tables for each restaurant
 if (document.getElementById('sales-data') !== null) {
-  createTable('ballard', tableArrayballard);
-  createTable('First Hill', tableArrayFirstHill);
-  createTable('International District', tableArrayIntDistrict);
-  createTable('South Lake Union', tableArraySthLakeUnion);
-  createTable('Georgetown', tableArrayGeorgetown);
-  createTable('Ravenna', tableArrayRavenna);
+  createTable('ballard', ballard.arrayData);
+  createTable('First Hill', firstHill.arrayData);
+  createTable('International District', intDistrict.arrayData);
+  createTable('South Lake Union', sthLakeUnion.arrayData);
+  createTable('Georgetown', georgetown.arrayData);
+  createTable('Ravenna', ravenna.arrayData);
 }
 
 //calculate the total amount of pizza sales and store in global variable totalPizzaSales.
-totalPizzaSales = 0;
 for (var i = 0; i < openHoursArray.length; i++) {
   totalPizzaSales += ballard.hourlyData[i].pizzaSold + firstHill.hourlyData[i].pizzaSold, intDistrict.hourlyData[i].pizzaSold + sthLakeUnion.hourlyData[i].pizzaSold + georgetown.hourlyData[i].pizzaSold + ravenna.hourlyData[i].pizzaSold;
 };
