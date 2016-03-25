@@ -3,7 +3,7 @@ body {
   background-color: #00033E;
 }
 
-#sales-data {
+.sales-data {
   background-color: white;
 }
 
@@ -81,7 +81,7 @@ figcaption {
 }
 
 
-#feature>p {
+.feature>p {
   background-color: #D2BC9E;
   text-align: center;
   padding: 5px;
