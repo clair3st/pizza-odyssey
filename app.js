@@ -5,8 +5,8 @@ var openHoursArray = ['8:00am','9:00am','10:00am','11:00am', '12:00pm', '1:00pm'
 //Table headings
 var tableHeadings = ['Time', 'Pizzas Sold', 'Deliveries', 'Delivery Drivers Required'];
 
-//Variables to manipulate DOM
-var row, col, restaurantTable, firstRow, featureId, featureText;
+//Variables to manipulate DOM and used in several functions
+var row, col, firstRow;
 //Variable to calculate pizza sales to update index.html
 var totalPizzaSales = 0;
 var count = 0;
@@ -84,7 +84,7 @@ function createTable(store, arrayContent) {
   restaurantTitle.textContent = store;
   pizzaSalesTable.appendChild(restaurantTitle);
 
-  restaurantTable = document.createElement('table');
+  var restaurantTable = document.createElement('table');
   firstRow = generateHeadingRow(tableHeadings);
   restaurantTable.appendChild(firstRow);
   for (var i = 0; i < arrayContent.length; i++) {
@@ -94,52 +94,43 @@ function createTable(store, arrayContent) {
   }
 }
 
-//Event Listener for New Restaurant Form
+//Event Listeners for New Restaurant Forms
+function collectHeadingForm(event) {
+  event.preventDefault();
+  var pizzaSalesData = document.getElementById('sales-data');
+  var restaurantTitle = document.createElement('h2');
+  var restaurant = event.target.locationName.value;
+
+  restaurantTitle.textContent = restaurant;
+  pizzaSalesData.appendChild(restaurantTitle);
+
+  var pizzaSalesTable = document.createElement('table');
+  pizzaSalesTable.setAttribute('id', restaurant);
+  pizzaSalesData.appendChild(pizzaSalesTable);
+
+  firstRow = generateHeadingRow(tableHeadings);
+  pizzaSalesTable.appendChild(firstRow);
+}
+
 function collectPizzaForm(event){
 
   event.preventDefault();
-
-  var pizzaSaleTable = document.getElementById('pizza-sales-table');
-  var parentDiv = pizzaSaleTable.parentNode;
-
   var restaurant = event.target.restaurant.value;
-  console.log('restaurant: ' + restaurant);
-  var restaurantTitle = document.createElement('h2');
-  console.log('restaurant title: ' + restaurantTitle);
-  restaurantTitle.textContent = restaurant;
-
-  var header = generateHeadingRow(tableHeadings);
+  var pizzaSaleTable = document.getElementById(restaurant);
 
   var createRestaurant = new StoreLocation(restaurant);
   createRestaurant.pushHourlyData(new HourlyData(event.target.time.value, parseInt(event.target.minPizza.value), parseInt(event.target.maxPizza.value), parseInt(event.target.minDelivery.value), parseInt(event.target.maxDelivery.value)));
-  console.log('new object ', createRestaurant);
+  createRestaurant.arrayHourlyData();
+  console.log('array' , createRestaurant);
 
-  var tableArrayNewRestaurant = [createRestaurant.hourlyData[0].time, createRestaurant.hourlyData[0].pizzaSold, createRestaurant.hourlyData[0].pizzaDelivered,
-    createRestaurant.hourlyData[0].deliveryDriversString];
-  console.log ('array' + createRestaurant.hourlyData[0].time);
+  var tableArrayNewRestaurant = [createRestaurant.hourlyData[0].time, createRestaurant.hourlyData[0].pizzaSold, createRestaurant.hourlyData[0].pizzaDelivered, createRestaurant.hourlyData[0].deliveryDriversString];
 
   row = generateDataRow(tableArrayNewRestaurant);
-  if (count === 0 ) {
-    parentDiv.insertBefore(restaurantTitle, pizzaSaleTable);
-    pizzaSaleTable.appendChild(header);
-  }
+  console.log(row);
+
   pizzaSaleTable.appendChild(row);
   count += 1;
   console.log(count);
-}
-
-function collectHeadingForm(event) {
-  event.preventDefault();
-  var pizzaSalesTable = document.getElementById('sales-data');
-  var restaurantTitle = document.createElement('h2');
-  var restaurant = event.target.locationName.value;
-  restaurantTitle.textContent = restaurant;
-  pizzaSalesTable.appendChild(restaurantTitle);
-
-  restaurantTable = document.createElement('table');
-  firstRow = generateHeadingRow(tableHeadings);
-  restaurantTable.appendChild(firstRow);
-
 }
 
 //Store data for each time in a variable using the HourlyData object constructor
@@ -288,8 +279,8 @@ console.log('total Pizza Sales: ' + totalPizzaSales);
 
 //try print to index.html
 if (document.getElementById('feature') !== null) {
-  featureId = document.getElementById('feature');
-  featureText = document.createElement('p');
+  var featureId = document.getElementById('feature');
+  var featureText = document.createElement('p');
   featureText.textContent = totalPizzaSales + ' happy pizza odysseys today!';
   featureId.appendChild(featureText);
 }
