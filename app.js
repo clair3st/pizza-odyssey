@@ -33,6 +33,14 @@ StoreLocation.prototype.pushHourlyData = function(data){
   this.hourlyData.push(data);
 };
 
+StoreLocation.prototype.arrayHourlyData = function(){
+  this.arrayData = [];
+  for (var i = 0; i < this.hourlyData.length; i++) {
+    this.arrayData.push([this.hourlyData[i].time, this.hourlyData[i].pizzaSold, this.hourlyData[i].pizzaDelivered,
+    this.hourlyData[i].deliveryDriversString]);
+  }
+};
+
 //function for random number
 function randomNo (min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -139,6 +147,7 @@ ballard.pushHourlyData(new HourlyData ('10:00pm', 1, 3, 4, 12));
 ballard.pushHourlyData(new HourlyData ('11:00pm', 8, 15, 6, 16));
 ballard.pushHourlyData(new HourlyData ('12:00am', 8, 15, 6, 16));
 ballard.pushHourlyData(new HourlyData ('11:00pm', 8, 15, 6, 16));
+ballard.arrayHourlyData();
 console.log('ballard: ', ballard);
 
 var firstHill = new StoreLocation('First Hill');
@@ -160,6 +169,7 @@ firstHill.pushHourlyData(new HourlyData ('10:00pm', 1, 3, 5, 16));
 firstHill.pushHourlyData(new HourlyData ('11:00pm', 8, 20, 6, 16));
 firstHill.pushHourlyData(new HourlyData ('12:00am', 8, 20, 6, 16));
 firstHill.pushHourlyData(new HourlyData ('11:00pm', 8, 20, 6, 16));
+firstHill.arrayHourlyData();
 
 var intDistrict = new StoreLocation('International District');
 intDistrict.pushHourlyData(new HourlyData('8:00am', 0, 4, 0, 4));
@@ -180,6 +190,7 @@ intDistrict.pushHourlyData(new HourlyData ('10:00pm', 8, 22, 7, 15));
 intDistrict.pushHourlyData(new HourlyData ('11:00pm', 0, 2, 2, 8));
 intDistrict.pushHourlyData(new HourlyData ('12:00am', 0, 2, 2, 8));
 intDistrict.pushHourlyData(new HourlyData ('1:00am', 0, 2, 2, 8));
+intDistrict.arrayHourlyData();
 
 var sthLakeUnion = new StoreLocation('South Lake Union');
 sthLakeUnion.pushHourlyData(new HourlyData('8:00am', 0, 4, 0, 4));
@@ -200,6 +211,7 @@ sthLakeUnion.pushHourlyData(new HourlyData ('10:00pm', 22, 36, 5, 22));
 sthLakeUnion.pushHourlyData(new HourlyData ('11:00pm', 5, 21, 16, 31));
 sthLakeUnion.pushHourlyData(new HourlyData ('12:00am', 5, 21, 16, 31));
 sthLakeUnion.pushHourlyData(new HourlyData ('1:00am', 5, 21, 16, 31));
+sthLakeUnion.arrayHourlyData();
 
 var georgetown = new StoreLocation('Georgetown');
 georgetown.pushHourlyData(new HourlyData('8:00am', 2, 7, 3, 5));
@@ -220,6 +232,7 @@ georgetown.pushHourlyData(new HourlyData ('10:00pm', 22, 41, 15, 42));
 georgetown.pushHourlyData(new HourlyData ('11:00pm', 15, 20, 6, 21));
 georgetown.pushHourlyData(new HourlyData ('12:00am', 15, 20, 6, 21));
 georgetown.pushHourlyData(new HourlyData ('1:00am', 15, 20, 6, 21));
+georgetown.arrayHourlyData();
 
 var ravenna = new StoreLocation('Ravenna');
 ravenna.pushHourlyData(new HourlyData('8:00am', 0, 4, 0, 4));
@@ -240,6 +253,7 @@ ravenna.pushHourlyData(new HourlyData ('10:00pm', 4, 8, 2, 5));
 ravenna.pushHourlyData(new HourlyData ('11:00pm', 2, 4, 3, 11));
 ravenna.pushHourlyData(new HourlyData ('12:00am', 2, 4, 3, 11));
 ravenna.pushHourlyData(new HourlyData ('1:00am', 2, 4, 3, 11));
+ravenna.arrayHourlyData();
 
 //Array of table data for each restaurant
 tableArrayballard = [];
