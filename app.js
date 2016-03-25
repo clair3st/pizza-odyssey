@@ -39,6 +39,21 @@ StoreLocation.prototype.arrayHourlyData = function(){
   }
 };
 
+StoreLocation.prototype.createTable = function() {
+  var pizzaSalesTable = document.getElementById('sales-data');
+  var restaurantTitle = document.createElement('h2');
+  restaurantTitle.textContent = this.name;
+  pizzaSalesTable.appendChild(restaurantTitle);
+  var restaurantTable = document.createElement('table');
+  firstRow = generateHeadingRow(tableHeadings);
+  restaurantTable.appendChild(firstRow);
+  for (var i = 0; i < this.arrayData.length; i++) {
+    row = generateDataRow(this.arrayData[i]);
+    restaurantTable.appendChild(row);
+    pizzaSalesTable.appendChild(restaurantTable);
+  }
+};
+
 //function for random number
 function randomNo (min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -75,23 +90,6 @@ function generateHeadingRow(inputArray) {
     row.appendChild(col);
   }
   return row;
-}
-
-//function to generate entire table for each restaurant
-function createTable(store, arrayContent) {
-  var pizzaSalesTable = document.getElementById('sales-data');
-  var restaurantTitle = document.createElement('h2');
-  restaurantTitle.textContent = store;
-  pizzaSalesTable.appendChild(restaurantTitle);
-
-  var restaurantTable = document.createElement('table');
-  firstRow = generateHeadingRow(tableHeadings);
-  restaurantTable.appendChild(firstRow);
-  for (var i = 0; i < arrayContent.length; i++) {
-    row = generateDataRow(arrayContent[i]);
-    restaurantTable.appendChild(row);
-    pizzaSalesTable.appendChild(restaurantTable);
-  }
 }
 
 //Event Listeners for New Restaurant Forms
@@ -134,7 +132,7 @@ function collectPizzaForm(event){
 }
 
 //Store data for each time in a variable using the HourlyData object constructor
-var ballard = new StoreLocation('ballard');
+var ballard = new StoreLocation('Ballard');
 ballard.pushHourlyData(new HourlyData('8:00am', 0, 3, 1, 7));
 ballard.pushHourlyData(new HourlyData('9:00am', 0, 3, 1, 7));
 ballard.pushHourlyData(new HourlyData ('10:00am', 0, 3, 1, 7));
@@ -261,14 +259,14 @@ ravenna.pushHourlyData(new HourlyData ('12:00am', 2, 4, 3, 11));
 ravenna.pushHourlyData(new HourlyData ('1:00am', 2, 4, 3, 11));
 ravenna.arrayHourlyData();
 
-//call the createTable functions to generate tables for each restaurant
+//call the createTable method to generate tables for each restaurant
 if (document.getElementById('sales-data') !== null) {
-  createTable('Ballard', ballard.arrayData);
-  createTable('First Hill', firstHill.arrayData);
-  createTable('International District', intDistrict.arrayData);
-  createTable('South Lake Union', sthLakeUnion.arrayData);
-  createTable('Georgetown', georgetown.arrayData);
-  createTable('Ravenna', ravenna.arrayData);
+  ballard.createTable();
+  firstHill.createTable();
+  intDistrict.createTable();
+  sthLakeUnion.createTable();
+  georgetown.createTable();
+  ravenna.createTable();
 }
 
 //calculate the total amount of pizza sales and store in global variable totalPizzaSales.
@@ -284,7 +282,10 @@ if (document.getElementById('feature') !== null) {
   featureText.textContent = totalPizzaSales + ' happy pizza odysseys today!';
   featureId.appendChild(featureText);
 }
-var createRestaurantForm = document.getElementById('new-restaurant-form');
-createRestaurantForm.addEventListener('submit', collectHeadingForm);
-var createPizzaForm = document.getElementById('pizza-sales-form');
-createPizzaForm.addEventListener('submit', collectPizzaForm);
+
+if (document.getElementById('pizza-sales-form') !== null) {
+  var createRestaurantForm = document.getElementById('new-restaurant-form');
+  createRestaurantForm.addEventListener('submit', collectHeadingForm);
+  var createPizzaForm = document.getElementById('pizza-sales-form');
+  createPizzaForm.addEventListener('submit', collectPizzaForm);
+}
