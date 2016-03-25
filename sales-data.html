@@ -4,57 +4,45 @@
     <title>sales data</title>
     <link rel="stylesheet" type="text/CSS" href="style.css"></link>
   </head>
-  <body id='sales-data' class='sales-data'>
-    <h2>Sales Data</h2>
-    <section id ='ballard'>
-      <h4>Ballard</h4>
+  <body  class='sales-data-body'>
+    <h1>Sales Data</h1>
+    <a href='index.html'>Front End</a>
+    <section id='sales-data'>
     </section>
-    <section  id='First Hill'>
-      <h4>First Hill</h4>
+    <section>
+      <form id='new-restaurant-form'>
+        <fieldset>
+          <legend>New Store Location</legend>
+          <label name='locationName'>Location Name:</label>
+          <input name='locationName' type='text'>
+          <button type='submit'>Submit a new restaurant</button>
+        </fieldset>
+      </form>
+      <form id='pizza-sales-form'>
+        <fieldset>
+          <legend>New Sales Information</legend>
+          <label name='restaurant'>Restaurant Location:</label>
+          <input name='restaurant' type='text'>
+          <br />
+          <label name='time'>Time of day:</label>
+          <input name='time' type='text'>
+          <br />
+          <label name='minPizza'>Minimum Pizza Sales:</label>
+          <input name='minPizza' type='text'>
+          <br />
+          <label name='maxPizza'>Maximum Pizza Sales:</label>
+          <input name='maxPizza' type='text'>
+          <br/>
+          <label name='minDelivery'>Minimum Pizza Deliveries:</label>
+          <input name='minDelivery' type='text'>
+          <br />
+          <label name='maxDelivery'>Maximum Pizza Deliveries:</label>
+          <input name='maxDelivery' type='text'>
+          <br />
+          <button type='submit'>Submit new data</button>
+        </fieldset>
+      </form>
     </section>
-    <section  id='International District'>
-      <h4>International District</h4>
-    </section>
-    <section id='South Lake Union'>
-      <h4>South Lake Union</h4>
-    </section>
-    <section id= 'Georgetown'>
-      <h4>Georgetown</h4>
-    </section>
-    <section id='Ravenna'>
-      <h4>Ravenna</h4>
-    </section>
-    <section id='create-location'>
-      <table id='pizza-sales-table'>
-      </table>
-    </section>
-  <section>
-    <form id='pizza-sales-form'>
-      <fieldset>
-        <legend>New Sales Information</legend>
-        <label name='restaurant'>Restaurant Location:</label>
-        <input name='restaurant' type='text'>
-        <br />
-        <label name='time'>Time of day:</label>
-        <input name='time' type='text'>
-        <br />
-        <label name='minPizza'>Minimum Pizza Sales:</label>
-        <input name='minPizza' type='text'>
-        <br />
-        <label name='maxPizza'>Maximum Pizza Sales:</label>
-        <input name='maxPizza' type='text'>
-        <br/>
-        <label name='minDelivery'>Minimum Pizza Deliveries:</label>
-        <input name='minDelivery' type='text'>
-        <br />
-        <label name='maxDelivery'>Maximum Pizza Deliveries:</label>
-        <input name='maxDelivery' type='text'>
-        <br />
-        <button type='submit'>Submit a new restaurant</button>
-
-      </fieldset>
-    </form>
-  </section>
     <script src='app.js' type='text/javascript'></script>
   </body>
 </html>
