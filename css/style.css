@@ -1,6 +1,7 @@
 
-body {
+.front {
   background-color: #00033E;
+  background-image: url(http://7hdwallpapers.com/wp-content/uploads/2015/10/1424-blue-galaxy.jpg);
 }
 
 .sales-data-body {
@@ -32,15 +33,8 @@ h3 {
   font-family: 'Rubik Mono One', sans-serif;
 }
 
-section p {
+p {
  font-family: 'Exo 2', sans-serif;
-}
-
-.aboutUs {
-  background-color: #44939E;
-  text-align: center;
-  height: 150px;
-  width: 80%;
 }
 
 img {
@@ -56,6 +50,13 @@ figcaption {
   color: white;
   text-align: center;
   font-family: 'Exo 2', sans-serif;
+}
+
+.aboutUs {
+  background-color: #44939E;
+  text-align: center;
+  height: 150px;
+  width: 80%;
 }
 
 .ourLocations {
@@ -117,7 +118,7 @@ td {
 }
 
 form {
-  padding: 5px;
+  padding: 10px;
 }
 
 label {
