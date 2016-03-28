@@ -37,13 +37,19 @@ p {
  font-family: 'Exo 2', sans-serif;
 }
 
+figure {
+  text-align: left;
+  -webkit-columns: 2;
+  display: inline-block table-cell;
+  margin: 30px auto 30px auto;
+}
+
 img {
-  min-height: 150px;
-  min-width: 150px;
+  height: 400px;
+  width: 400px;
+  display: block;
   margin: 25px auto 25px auto;
-  text-align: center;
-  display: table-cell;
-  vertical-align: middle;
+
 }
 
 figcaption {
@@ -72,11 +78,12 @@ ul {
  -moz-columns: 2;
  list-style-type: none;
  width: 65%;
- margin:0px auto;
+ margin:0px auto 0px auto;
 }
 
 .ourLocations>h3 {
   text-align: center;
+
 }
 
 
@@ -92,13 +99,16 @@ ul {
   background-color: #D2BC9E;
   text-align: center;
   padding: 5px;
-  height: 25px;
+  height: 30px;
   width: 50%;
   margin-left: auto;
   margin-right: auto;
   font-weight: bold;
   border-radius: 5px;
+  font-size: 20px;
 }
+
+
 
 table {
   border-collapse: collapse;
@@ -119,9 +129,30 @@ td {
 
 form {
   padding: 10px;
+  position: absolute;
+  top: 40px;
+  left: 500px;
+  width: 400px;
+  font-weight: bold;
+}
+
+legend {
+  font-size: 20px;
 }
 
 label {
-  padding: 10px;
+  float: left;
+  text-align: right;
+  margin: 10px;
+}
+
+input {
+  float: right;
+  margin: 10px;
+  background-color: #f2f2f2;
+}
+
+button {
+  background-color: lightgrey;
   margin: 10px;
 }
