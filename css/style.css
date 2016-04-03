@@ -1,0 +1,158 @@
+
+.front {
+  background-color: #00033E;
+  background-image: url(http://7hdwallpapers.com/wp-content/uploads/2015/10/1424-blue-galaxy.jpg);
+}
+
+.sales-data-body {
+  background-color: white;
+}
+
+header {
+  height: 10%;
+  width: 70%;
+  background-color: #195671;
+  color: #D2BC9E;
+  text-align: center;
+  margin-bottom: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  font-family: 'Trade Winds', cursive;
+  font-size: 50px;
+  border-radius: 80px 50px;
+  padding: 5px;
+}
+
+section {
+  margin: 30px auto 10px auto;
+  padding: 5px;
+  border-radius: 10px;
+}
+
+h3 {
+  font-family: 'Rubik Mono One', sans-serif;
+}
+
+p {
+ font-family: 'Exo 2', sans-serif;
+}
+
+figure {
+  text-align: left;
+  -webkit-columns: 2;
+  display: inline-block table-cell;
+  margin: 30px auto 30px auto;
+}
+
+img {
+  height: 400px;
+  width: 400px;
+  display: block;
+  margin: 25px auto 25px auto;
+
+}
+
+figcaption {
+  color: white;
+  text-align: center;
+  font-family: 'Exo 2', sans-serif;
+}
+
+.aboutUs {
+  background-color: #44939E;
+  text-align: center;
+  height: 150px;
+  width: 80%;
+}
+
+.ourLocations {
+  background-color: #44939E;
+  height: 200px;
+  width: 80%;
+}
+
+ul {
+ font-family: 'Exo 2', sans-serif;
+ columns: 2;
+ -webkit-columns: 2;
+ -moz-columns: 2;
+ list-style-type: none;
+ width: 65%;
+ margin:0px auto 0px auto;
+}
+
+.ourLocations>h3 {
+  text-align: center;
+
+}
+
+
+.openingHours {
+  background-color: #44939E;
+  text-align: center;
+  height: 100px;
+  width: 80%;
+}
+
+
+.feature>p {
+  background-color: #D2BC9E;
+  text-align: center;
+  padding: 5px;
+  height: 30px;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  font-weight: bold;
+  border-radius: 5px;
+  font-size: 20px;
+}
+
+
+
+table {
+  border-collapse: collapse;
+  border: solid;
+}
+
+th {
+  border: solid;
+  text-align: center;
+  padding: 5px;
+}
+
+td {
+  border: solid;
+  text-align: center;
+  padding: 5px;
+}
+
+form {
+  padding: 10px;
+  position: absolute;
+  top: 40px;
+  left: 500px;
+  width: 400px;
+  font-weight: bold;
+}
+
+legend {
+  font-size: 20px;
+}
+
+label {
+  float: left;
+  text-align: right;
+  margin: 10px;
+}
+
+input {
+  float: right;
+  margin: 10px;
+  background-color: #f2f2f2;
+}
+
+button {
+  background-color: lightgrey;
+  margin: 10px;
+}
